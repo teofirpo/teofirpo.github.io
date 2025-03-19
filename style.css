@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px auto;
+    width: 70%;
+    max-width: 800px;
+    line-height: 1.6;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+h3 {
+    color: #0073e6;
+}
+
+.container {
+    padding: 20px;
+}
+
+hr {
+    border: 1px solid #ddd;
+}
