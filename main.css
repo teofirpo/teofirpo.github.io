@@ -199,3 +199,34 @@ table tr th :first-child,table tr td :first-child {
 table tr th :last-child,table tr td :last-child {
     margin: 0
 }
+
+.policy-subheader {
+  margin-top: 1.5em;
+  margin-bottom: 0.8em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.policy-list {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.policy-list li {
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  column-gap: 14px;
+  margin-bottom: 1.2em;
+  align-items: start;
+}
+
+.policy-dot {
+  width: 10px;
+  height: 10px;
+  margin-top: 0.45em;
+  border-radius: 50%;
+  background: #14a7d0;      /* same accent as links / cookie button */
+  box-shadow: 0 0 0 3px rgba(20, 167, 208, 0.15);
+}
+
