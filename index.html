@@ -184,25 +184,98 @@ Governments spend over a billion US dollars annually on firm support programs, y
           ga('create', 'UA-99337029-1', 'auto');
           ga('send', 'pageview');
         </script>
-    
-<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+    <style>
+  .cookie-banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 12px 16px;
+    background: #252e39;
+    color: #fff;
+    font-size: 14px;
+    z-index: 9999;
+    display: none;
+  }
+  .cookie-banner__inner {
+    max-width: 980px;
+    margin: 0 auto;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .cookie-banner a { color: #9adcf0; text-decoration: underline; }
+  .cookie-banner button {
+    background: #14a7d0;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    color: #000;
+    cursor: pointer;
+    font-weight: 600;
+  }
+</style>
+
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie notice">
+  <div class="cookie-banner__inner">
+    <div>
+      This website uses cookies to ensure you get the best experience.
+      <a href="https://www.cookiesandyou.com/" target="_blank" rel="noopener noreferrer">Learn more</a>
+    </div>
+    <button id="cookie-accept" type="button">OK</button>
+  </div>
+</div>
+
 <script>
-window.addEventListener("load", function(){
-  window.cookieconsent.initialise({
-    "palette": {
-      "popup": { "background": "#252e39" },
-      "button": { "background": "#14a7d0" }
-    },
-    "theme": "classic",
-    "position": "bottom",
-    "content": {
-      "message": "This website uses cookies to ensure you get the best experience.",
-      "dismiss": "Got it!",
-      "link": "Learn more",
-      "href": "https://www.cookiesandyou.com/" 
+  (function () {
+    var KEY = "site_cookie_consent_v1";
+
+    function hasConsent() {
+      try {
+        return localStorage.getItem(KEY) === "accepted";
+      } catch (e) {
+        // If storage is blocked, fall back to a session-only banner behavior
+        return false;
+      }
     }
-  });
-});
+
+    function setConsent() {
+      try {
+        localStorage.setItem(KEY, "accepted");
+      } catch (e) {
+        // Storage blocked: still hide for this page view
+      }
+      // Optional cookie fallback (some browsers allow cookies but block localStorage, or vice-versa)
+      try {
+        document.cookie = "site_cookie_consent=accepted; Max-Age=31536000; Path=/; SameSite=Lax";
+      } catch (e) {}
+    }
+
+    function showBanner() {
+      var el = document.getElementById("cookie-banner");
+      if (el) el.style.display = "block";
+    }
+
+    function hideBanner() {
+      var el = document.getElementById("cookie-banner");
+      if (el) el.style.display = "none";
+    }
+
+    window.addEventListener("load", function () {
+      if (!hasConsent()) showBanner();
+
+      var btn = document.getElementById("cookie-accept");
+      if (btn) {
+        btn.addEventListener("click", function () {
+          setConsent();
+          hideBanner();
+        });
+      }
+    });
+  })();
 </script>
+
 
 </body>
