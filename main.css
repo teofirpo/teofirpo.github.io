@@ -268,4 +268,9 @@ table tr th :last-child,table tr td :last-child {
   margin-top: 0.6em;
 }
 
+.container.content {
+  padding-bottom: 4rem;
+}
+
+
 
